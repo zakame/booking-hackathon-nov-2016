@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Booking hackathon</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container page-2">
+    <div class="row">
+      <!-- <div class="one-half column" style="margin-top: 25%">
+        <h4>Basic Page</h4>
+        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+      </div> -->
+
+      <div class="twelve columns">
+        <h2>Here's what you can see and do</h2>
+        <p class="short-text">Pick your top 5</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- <div class="grid">
+        <div class="grid-item">...</div>
+        <div class="grid-item grid-item--width2">...</div>
+        <div class="grid-item">...</div>
+        <div class="grid-item">...</div>
+
+        <div class="grid-item">...</div>
+        <div class="grid-item">...</div>
+        ...
+      </div> -->
+
+
+      <div id="freewall" class="free-wall attractions">
+        <div class="cell attractions-item" style="background-image:url('http://1.bp.blogspot.com/-jbrbic3xZMw/VREKadCNZ7I/AAAAAAAAB0w/SZKwU2dcEh4/s1600/DSC_0651.jpg');">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Ride a habal-habal</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell landscape attractions-item" style="background-image:url('http://www.oslobwhalesharks.com/wp-content/uploads/2015/03/snorkeling-with-the-whale-sharks.jpg');">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Whaleshark watching</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 89%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell square attractions-item" style="background-image:url('https://sublimestthings.files.wordpress.com/2015/05/dsc_3594.jpg');">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Heritage Park</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 95%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell portrait attractions-item" style="background-image:url('http://www.kryzuy.com/wp-content/uploads/2014/07/KryzUy.Com-Tumalog-Falls-16.jpg');">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Tumalog Falls</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 70%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell attractions-item" style="background-image:url('https://media-cdn.tripadvisor.com/media/photo-o/0c/72/62/9b/cafe-bora.jpg')">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Food trip: Cafe Bora</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 50%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell attractions-item" style="background-image:url('https://jauntingandmusing.files.wordpress.com/2015/12/cymera_20151208_114851.jpg?w=600')">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Osmeña Peak</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 70%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell attractions-item" style="background-image:url('http://windowseat.ph/wp-content/uploads/2016/04/pundaquit.jpg');">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Stargazing</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell super-landscape attractions-item" style="background-image:url('http://4.bp.blogspot.com/-I8JCiZ2obJ0/VREQIx2xToI/AAAAAAAAB1g/K0p0Qtnpa3g/s1600/DSC_0412.jpg'); ">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Sunset by the beach</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 85%;"></div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="cell landscape attractions-item" style="background-image:url('https://i.ytimg.com/vi/sGwaQ1GjFk0/maxresdefault.jpg');">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Canyoneering</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 85%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cell attractions-item" style="background-image:url('https://dumaguete.com/wp-content/uploads/2016/03/Sumilon-Island.jpg')">
+          <div class="attraction-include-this">
+            <input type="checkbox" />
+            <div class="checkbox-custom"></div>
+          </div>
+          <div class="attractions-info">
+            <h3>Sumilon Island</h3>
+            <div class="attractions-rating-bar">
+              <div class="attractions-rating-bar-filled" style="width: 65%;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+  <script type="text/javascript" src="js/lib/jquery-1.7.2.min.js"></script>
+  <!--<script type="text/javascript" src="js/lib/masonry.pkgd.min.js"></script> -->
+  <script type="text/javascript" src="js/lib/freewall.js"></script>
+  <script type="text/javascript" src="js/hello.js"></script>
+</body>
+</html>

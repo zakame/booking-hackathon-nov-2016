@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Booking hackathon</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <!-- scripts
+  -------------------------------------------------- -->
+  <script type="text/javascript" src="/js/jsutil.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.1.3.min.js"></script>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      #right-panel {
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        right: 5px;
+        top: 60%;
+        margin-top: -195px;
+        height: 330px;
+        width: 200px;
+        padding: 5px;
+        z-index: 5;
+        border: 1px solid #999;
+        background: #fff;
+      }
+      h2 {
+        font-size: 22px;
+        margin: 0 0 5px 0;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        height: 271px;
+        width: 200px;
+        overflow-y: scroll;
+      }
+      li {
+        background-color: #f1f1f1;
+        padding: 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      li:nth-child(odd) {
+        background-color: #fcfcfc;
+      }
+      #more {
+        width: 100%;
+        margin: 5px 0 0 0;
+      }
+    </style>
+    <script>
+
+    var map;
+      var directionsService; 
+      var directionsDisplay; 
+      var latitude;
+      var longitude;
+      var markerPosArr = new Array(); //array for the marker positions from google maps api
+
+
+      function get_location(somedate) {
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(initMap,show_err);
+
+          $.ajax({
+            url: "http://localhost:443/gethotel",
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json",
+           /*beforeSend: function(xhr) {
+               xhr.setRequestHeader("Accept", "application/json");
+               xhr.setRequestHeader("Content-Type", "application/json");
+               xhr.setRequestHeader("Access-Control-Allow-Headers", "x-requested-with");
+           },*/
+           success: function(route) {
+               console.log('success on the ajax');
+               console.log(route);
+               var hotels = route.hotels;
+               var hid;
+
+               for(i=0;i<hotels.length;i++) {
+
+                  //console.log(markerPosArr)
+                    for(j=0;j<markerPosArr.length;j++) {
+                      //check if within range of POIs
+                      var latlng = new google.maps.LatLng(markerPosArr[j].lat(), markerPosArr[j].lng());
+                      var latlng1 = new google.maps.LatLng(hotels[i].location.latitude, hotels[i].location.longitude);
+                      //console.log(latlng);
+                      //console.log(latlng1);
+                      var dist = google.maps.geometry.spherical.computeDistanceBetween(latlng,latlng1);
+                                                console.log(hotels[i].hotel_name + " about a " + dist + " meters");
+
+                      if(dist <= 300.0) {
+                          console.log(hotels[i].hotel_name + " about a " + dist + " meters");
+                        
+
+                           hid = hotels[i].hotel_id;
+                          /*var contentstr = '<div id="content">'+'<IMG ID="imgHolder" BORDER="1" SRC="' + hotels[i].photo + '">' +
+                              '</div>'
+                          var infowindow = new google.maps.InfoWindow({
+                              content: contentstr,
+                              maxWidth: 200
+                            });
+                           marker.addListener('click', function() {
+                              infowindow.open(map, marker);
+                            });*/
+                            /*var ave_rating;
+                             $.ajax({
+                                url: "http://localhost:443/gethotelReviews",
+                                type: "GET",
+                                dataType: "json",
+                                data: 'hid=' + hid,
+                                contentType: "application/json",
+                                success: function(data){
+                                  //console.log(data)
+                                  var tr = 0;
+                                  for(i=0;i<data.length;i++) {
+                                     tr += data[i].average_score
+                                  }
+                                  ave_rating = tr / data.length;
+                                }
+
+                              });*/
+                          //put a marker ??
+                          marker = new google.maps.Marker({
+                              map: map,
+                              draggable: false,
+                              animation: google.maps.Animation.DROP,
+                              position: latlng1,
+                              title: hotels[i].hotel_name + "\n Price: " + hotels[i].price + " Php",  
+                              icon: 'http://maps.google.com/mapfiles/kml/pal3/icon21.png',
+                              //map_icon_label: '<span class="map-icon map-icon-trail-walking"></span>'
+                          });
+
+                      }
+                  }
+                
+               }
+
+               //console.log(markerPosArr);
+
+           }
+        });
+        } else {
+          alert('No geolocation support from your browser. Kindly enable and reload your browser');
+        }
+      }
+
+
+      function initMap(position) {
+
+      //  makati = 11.9636379,121.9244862
+      // intramuros = 14.5887298,120.9769567
+      latitude = 11.9636379;
+      longitude = 121.9244862;
+      // intramuras
+      latitude = 14.5887298;//position.coords.latitude;
+      longitude = 120.9769567;//position.coords.longitude;
+      console.log("lat = " + latitude + " long = " + longitude);
+
+      directionsService = new google.maps.DirectionsService();
+      directionsDisplay = new google.maps.DirectionsRenderer();
+        //14.5535513,121.0215767
+        //9.9755791,118.8008843
+        //var pyrmont = {lat: 14.5535513, lng: 121.0215767};
+        var pyrmont = {lat: latitude, lng: longitude};
+        map = new google.maps.Map(document.getElementById('dmap'), {
+          center: pyrmont,
+          zoom: 17
+        });
+
+        var service = new google.maps.places.PlacesService(map);
+        /*service.nearbySearch({
+          location: pyrmont,
+          radius: 500,
+          type: ['bar']
+        }, processResults);*/
+
+       service.textSearch({
+          location: pyrmont,
+          radius: 500,
+          //type: ['bar']
+          query: 'attractions'
+        }, processResults);
+
+        directionsDisplay.setMap(map);
+
+
+      }
+
+      function processResults(results, status, pagination) {
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          return;
+        } else {
+          //limit the results to 5 ?? because google maps only allows 8
+          results = results.slice(0,6);
+
+          createMarkers(results);
+          console.log("results length is " + results.length);
+          if (pagination.hasNextPage) {
+            /*var moreButton = document.getElementById('more');
+
+            moreButton.disabled = false;
+
+            moreButton.addEventListener('click', function() {
+              moreButton.disabled = true;
+              pagination.nextPage();
+            });*/
+          }
+        }
+      }
+
+      function createMarkers(places) {
+        var bounds = new google.maps.LatLngBounds();
+        //var placesList = document.getElementById('places');
+        var request = {
+            travelMode: google.maps.TravelMode.WALKING
+        };
+        for (var i = 0, place; place = places[i]; i++) {
+          var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+          };
+
+          var marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            title: place.name,
+            position: place.geometry.location
+          });
+
+          //placesList.innerHTML += '<li>' + place.name + '</li>';
+
+          bounds.extend(place.geometry.location);
+
+          if (i == 0) {
+              var coord1 = new google.maps.LatLng(latitude, longitude);
+              request.origin = coord1;//marker.getPosition();
+              markerPosArr.push(coord1);
+          } else if (i == places.length - 1) {
+            request.destination = marker.getPosition();
+            var coord2 = marker.getPosition();
+            markerPosArr.push(coord2);
+          }
+          else {
+            if (!request.waypoints) request.waypoints = [];
+            request.waypoints.push({
+              location: marker.getPosition(),
+              stopover: true
+            });
+
+            markerPosArr.push(marker.getPosition());
+          }
+
+
+        }
+        map.fitBounds(bounds);
+
+       directionsService.route(request, function(result, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(result);
+          }
+        });
+
+      }
+      function isEmpty(val){
+        return (val === undefined || val == null || val.length <= 0) ? true : false;
+      }
+      function show_err() {
+        console.log("Error in geoloc!");
+      }
+
+    </script>
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container page-3">
+    <div class="row">
+      <div class="twelve columns">
+        <h2 class="text-center header-what-you-can-do">Here's what you can do in Oslob, Cebu</h2>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="twelve columns">
+        <div class="wrapper-googlemap">
+          <div id="dmap">
+            
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="row">
+      <div class="twelve columns hotel-suggestions">
+        <p class="hotel-suggestions-text">Maximise your stay in Oslob by having a place to stay nearby</p>
+
+        
+          <a href="#" class="hotel-item">
+            <div class="hotel-item--image">
+              <img src="http://q-ec.bstatic.com/images/hotel/square200/253/25352657.jpg" />
+            </div>
+            <div class="hotel-item--info">
+              <span class="hotel-item--name" >Sascha's Resort Oslob</span>
+              <div class="hotel-item--rating-bar">
+                <div class="hotel-item--rating-bar-filled" style="width: 80%;"></div>
+              </div>
+              <span class="hotel-item--lastbooked" >Booked 2 times in the last 48 hours</span>
+            </div>
+            <div class="hotel-item--book">
+              <span class="hotel-item--price" ><span class="price--currency">PHP</span> 2,000</span>
+              <button class="button hotel-item--book-now">Book your room</button>
+            </div>
+          </a>
+        
+
+          <a href="#" class="hotel-item">
+            <div class="hotel-item--image">
+              <img src="http://q-ec.bstatic.com/images/hotel/square200/690/69072936.jpg" />
+            </div>
+            <div class="hotel-item--info">
+              <span class="hotel-item--name" >Granada Beach Resort - Adults only</span>
+              <div class="hotel-item--rating-bar">
+                <div class="hotel-item--rating-bar-filled" style="width: 90%;"></div>
+              </div>
+              <span class="hotel-item--lastbooked" >Booked 4 times in the last 48 hours</span>
+            </div>
+            <div class="hotel-item--book">
+              <span class="hotel-item--price" ><span class="price--currency">PHP</span> 3,500</span>
+              <button class="button hotel-item--book-now">Book your room</button>
+            </div>
+          </a>
+
+        
+          <a href="#" class="hotel-item">
+            <div class="hotel-item--image">
+              <img src="http://q-ec.bstatic.com/images/hotel/square200/325/32573269.jpg" />
+            </div>
+            <div class="hotel-item--info">
+              <span class="hotel-item--name" >Luzmin BH - Cottages and Bungalows</span>
+              <div class="hotel-item--rating-bar">
+                <div class="hotel-item--rating-bar-filled" style="width: 60%;"></div>
+              </div>
+              <span class="hotel-item--lastbooked" >Booked 1 times in the last 48 hours</span>
+            </div>
+            <div class="hotel-item--book">
+              <span class="hotel-item--price" ><span class="price--currency">PHP</span> 3,750</span>
+              <button class="button hotel-item--book-now">Book your room</button>
+            </div>
+          </a>
+
+      </div>
+    </div>
+
+    <div class="row try-again-group">
+      Have another place in mind? <a href="page1.html" class="button button-primary">Try another itinerary</a>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+  <script type="text/javascript" src="js/lib/jquery-1.7.2.min.js"></script>
+  <!--<script type="text/javascript" src="js/lib/masonry.pkgd.min.js"></script> -->
+
+  <script type="text/javascript" src="js/lib/freewall.js"></script>
+  <script type="text/javascript" src="js/hello.js"></script>
+
+  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ397vDwa1o-S8-uNHOmdSK0GOqU55yo0&libraries=places&callback=get_location" async defer></script>
+</body>
+</html>

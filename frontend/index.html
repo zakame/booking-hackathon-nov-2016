@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <! link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+      <link rel="stylesheet" href="css/pikaday.css">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="/js/jsutil.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+
+
+  </script>
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+  
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+  
+  	<div class="row">
+	   <div class="six column" style="margin-top: 7%; margin-bottom: 0%;  text-align: left; font-family: Flex Display Thin; line-height: 0.5">
+        <p style="font-size: 28px; color: rgb(255, 92, 0)"><b>my daytrips</b></p>
+      </div>
+    </div>
+	
+    <div class="row">
+      <div class="six column" style="margin-top: 0%; margin-bottom: 5%; font-family: Flex Display Thin; line-height: 0.5">
+        <p style="font-size: 130px">DropBy</p>
+	  </div>
+    </div>
+	
+	<div class="row">
+      <form id="frmDrpby" action="" method="post" onsubmit="get_location();return false;">          
+          <div class="six column" style="margin-bottom: 20%">
+            <label for="Next destination"></label>
+            <input class="u-half-width" type="text" placeholder="Next destination" id="destination">
+      	    <input type="text" id="datepicker" placeholder="Pick a date">
+
+            <input class="button-primary" type="submit" value="Let's Go">
+
+          </div>
+	     </form>
+    </div>
+  </div>
+  
+      <div class="row">	
+		   <div class="six column" style="text-align: center">
+        <blockquote style="font-size: 43px; line-height:0.5; margin-top: 0%; color:black; text-align: center; line-height: 0.9; font-family:Flex Display Thin"><i><b>"when all else fails, take a vacation"</b></i></blockquote>
+		      <p style="line-height: 0.5"><b>Betty Williams</b><p>
+      </div>
+	</div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

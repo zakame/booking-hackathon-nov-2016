@@ -1,0 +1,27 @@
+block content
+    h1.
+        User List
+    table(border='1')
+      thead
+        tr
+          th Time
+          th Initials
+          th IP Address
+          th Latitude
+          th Longitude
+          th Location
+      tbody
+      each user, i in userlist
+        tr
+          td=user.datetime
+          td=user.initials
+          td=user.ip
+          td=user.lat
+          td=user.long
+          td
+            img(
+                  style='-webkit-user-select: none, cursor: zoom-in'
+                  width='458'
+                  height='367'
+                  src=user.mapurl
+                  )

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Booking hackathon</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css" -->
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/datepicker.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+  <style>
+  .ui-datepicker {
+    background: #fafafa;
+  }
+  .ui-datepicker-header {
+    background: #02214c;
+  }
+
+  .flex-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    -webkit-box-align: center;
+    min-height: 600px;
+  }
+  .search-place {
+    width: 400px;
+  }
+
+  body {
+    background-image: url('https://source.unsplash.com/category/nature/1600x900');
+    background-size: cover;
+
+  }
+
+  form {
+    font-size: 24px;
+  }
+  input.reset-me {
+    height: auto;
+    line-height: 36px;
+  }
+  .lets-go {
+
+  }
+  </style>
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+  
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="flex-wrapper">
+    <div class="container">
+  
+    <div class="row">
+      <div class="twelve-columns">
+        <img src="images/logo-dropby.png" style="background: white;
+    padding: 16px 36px;
+    border-radius: 5px;
+    display: block;
+    margin: auto auto 48px;
+" />
+      </div>
+    </div>
+      <div class="row">
+          <form action="/next" method="post">
+            <div class="twelve-columns" style="text-align: center;">
+              <label for="Next destination"></label>
+              <input class="u-half-width search-place reset-me" type="text" placeholder="Where would you like to go?" id="destination">
+              <input class="reset-me" type="text" id="datepicker" placeholder="Pick a date">
+              <input class="button-primary lets-go" type="submit" value="Let's Go" style="font-size: 24px; line-height: 36px; height: initial; padding: 6px 24px; ">
+            </div>
+          </form>
+        </div>
+      
+      <!-- <div class="row"> 
+        <div class="six column" style="text-align: center">
+          <blockquote style="font-size: 36px; line-height:0.5; margin-top: 0%; color:black; text-align: center; line-height: 0.9; font-family:Flex Display Thin">"When all else fails, take a vacation"</blockquote>
+          <p style="line-height: 0.5; font-family: sans-serif;">Betty Williams</p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <div style="text-align: center; width: 800px; margin: auto; color: white;">
+    <blockquote style="font-size: 24px; margin: 0 auto 0; text-align: center; line-height: 1.2; color: white;">"When all else fails, take a vacation"<p style="line-height: 0.5; font-family: sans-serif; font-size: 16px; margin-top: 24px;">- Betty Williams</p></blockquote>
+  </div>
+  
+</body>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
