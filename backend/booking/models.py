@@ -18,7 +18,8 @@ class Conference(models.Model):
     facebook = models.CharField(max_length=100, blank=True, null=True)
     accessibility = models.CharField(max_length=100, blank=True, null=True)
     diversity_tickets = models.IntegerField(null=True)
-    youtube = models.CharField(max_length=100, blank=True, null=True)
+    youtube = models.CharField(max_length=500, blank=True, null=True)
     
-
+    def __unicode__(self):
+        return '{}: {}'.format(self.id, self.name)
 

@@ -26,3 +26,8 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
+
+- Load data
+```
+python manage.py load_data
+```

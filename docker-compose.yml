@@ -11,6 +11,7 @@ services:
       - DB_USER=conf
       - DB_NAME=conf
       - DB_PASSWORD=booking
+      - DEBUG=True
     image: conf-back
     networks:
       - conferences

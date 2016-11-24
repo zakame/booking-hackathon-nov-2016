@@ -1,0 +1,14 @@
+name:            PHPBenelux Conference 2017
+url:             https://conference.phpbenelux.eu/2017/
+start_date:      2017-01-27
+end_date:        2017-01-28
+cfp_date:        2016-10-02
+city:            Antwerp
+state:           
+country:         Belgium
+topics:          PHP, web
+languages:       English
+code_of_conduct: https://conference.phpbenelux.eu/2017/behave/
+twitter:         phpbenelux
+facebook:        
+# The behave page is linked from the About menu point
