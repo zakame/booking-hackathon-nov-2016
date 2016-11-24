@@ -31,3 +31,8 @@ python manage.py createsuperuser
 ```
 python manage.py load_data
 ```
+
+- To add geocoordinate data
+```
+python manage.py geocode
+```
