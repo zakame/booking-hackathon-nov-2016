@@ -1,6 +1,8 @@
 $(document).ready(function() {
+  $("#loadingBar1").show();
   queryConferences().then(function(data){
     renderConferenceList(data);
+    $("#loadingBar1").hide();
   });
   //renderConferenceList(queryConferences());
 });
