@@ -71,10 +71,87 @@ http://developers.booking.com/api/technical.json
    :pretty:   json
    :END:
 
-*** GET =/conferences=
+*** GET =/conferences/=
 
     - emit a list of conferences
 
-*** GET =/conferences/:id=
+      #+BEGIN_SRC http
+      GET /conferences/
+      #+END_SRC
+
+      #+RESULTS:
+      #+begin_example
+      [
+        {
+          "id": 1,
+          "name": "Accessibility Camp Bay Area 2016",
+          "url": "http://www.accessibilitycampbay.org/",
+          "start_date": "2016-10-29",
+          "end_date": "2016-10-29",
+          "cfp_date": null,
+          "city": "San Francisco",
+          "state": "California",
+          "country": "USA",
+          "topics": "accessibility, a11y",
+          "languages": "English",
+          "code_of_conduct": "",
+          "twitter": "A11yCampBay",
+          "facebook": "",
+          "accessibility": "",
+          "diversity_tickets": null,
+          "youtube": ""
+        },
+        {
+          "id": 2,
+          "name": "Accessibility Camp DC 2014",
+          "url": "http://www.accessibilitycampdc.org/",
+          "start_date": "2014-10-11",
+          "end_date": "2014-10-11",
+          "cfp_date": null,
+          "city": "Washington",
+          "state": "DC",
+          "country": "USA",
+          "topics": "accessibility, a11y",
+          "languages": "English",
+          "code_of_conduct": "",
+          "twitter": "",
+          "facebook": "",
+          "accessibility": "",
+          "diversity_tickets": null,
+          "youtube": ""
+        },
+        ...
+      ]
+#+end_example
+
+*** GET =/conferences/:id/=
 
     - emit details of conference specified by its =id=
+
+      #+BEGIN_SRC http
+      GET /conferences/1/
+      #+END_SRC
+
+      #+RESULTS:
+      #+begin_example
+      {
+        "id": 1,
+        "name": "Accessibility Camp Bay Area 2016",
+        "url": "http://www.accessibilitycampbay.org/",
+        "start_date": "2016-10-29",
+        "end_date": "2016-10-29",
+        "cfp_date": null,
+        "city": "San Francisco",
+        "state": "California",
+        "country": "USA",
+        "topics": "accessibility, a11y",
+        "languages": "English",
+        "code_of_conduct": "",
+        "twitter": "A11yCampBay",
+        "facebook": "",
+        "accessibility": "",
+        "diversity_tickets": null,
+        "youtube": ""
+      }
+#+end_example
+
