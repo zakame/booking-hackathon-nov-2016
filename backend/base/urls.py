@@ -16,11 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from booking.views import ConferenceListView
+from booking.views import ConferenceListView, ConferenceDetailView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     url(r'^conferences/$', ConferenceListView.as_view(), name='conference_list'),
+    url(r'^conferences/(?P<pk>[0-9]+)/$', ConferenceDetailView.as_view(), name='conference_detail'),
 ]
