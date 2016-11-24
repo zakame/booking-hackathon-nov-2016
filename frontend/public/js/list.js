@@ -1,3 +1,3 @@
-function expand() {
-  var _this = this;
+var goToDetails = function(confId) {
+  window.location.href = "/details.html?confId=" + confId;
 }
