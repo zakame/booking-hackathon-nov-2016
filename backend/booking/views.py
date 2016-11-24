@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .models import Conference
+from .serializers import ConferenceSerializer
 
-# Create your views here.
+
+class ConferenceListView(generics.ListAPIView):
+    queryset = Conference.objects.all()
+    serializer_class = ConferenceSerializer
