@@ -18,10 +18,6 @@ DB_HOST=XXXXXXXXXXXXXXX [default:127.0.0.1]
 DB_PORT=XXXXXXXXXXXXXXX [default:5432]
 DEBUG=True|False
 ```
-- Sync database
-```
-python manage.py syncdb
-```
 - Run migrations (if any)
 ```
 python manage.py migrate
