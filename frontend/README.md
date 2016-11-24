@@ -6,4 +6,4 @@ npm install
 
 To Run:
 
-node test.js
+npm start
