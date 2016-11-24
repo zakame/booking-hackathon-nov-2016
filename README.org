@@ -155,3 +155,10 @@ http://developers.booking.com/api/technical.json
       }
 #+end_example
 
+*** GET =/conferences/:id/hotels/=
+
+    - emits a list of hotels near the conference venue (default 15km)
+
+      #+BEGIN_SRC http
+      GET /conferences/:id/hotels/
+      #+END_SRC
