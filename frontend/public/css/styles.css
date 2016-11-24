@@ -52,7 +52,7 @@ body .demo-blog {
 }
 
 .demo-blog.mdl-layout .mdl-layout__content {
-  padding-top: 230px;
+  padding-top: 10px;
   position: relative;
   -webkit-overflow-scrolling: touch;
 }
@@ -516,4 +516,16 @@ body .demo-blog {
 
 .fullwidth {
   width:100%;
+}
+
+#logoBlock {
+  width:100%;
+  padding: 20px 0px;
+}
+
+#logoBlock img {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  height:160px;
 }
