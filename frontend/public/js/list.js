@@ -1,5 +1,8 @@
 $(document).ready(function() {
-  renderConferenceList(queryConferences());
+  queryConferences().then(function(data){
+    renderConferenceList(data);
+  });
+  //renderConferenceList(queryConferences());
 });
 
 var goToDetails = function(confId) {
