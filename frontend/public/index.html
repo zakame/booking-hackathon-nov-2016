@@ -57,7 +57,7 @@
 <script type="text/template" class="template">
   <% _.each( rc.listItems, function( listItem ){ %>
   <div class="mdl-card mdl-cell mdl-cell--12-col">
-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url('images/road.jpg');" onclick="goToDetails(1)">
+    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url('images/road.jpg');" onclick="goToDetails(<%- listItem.id %>)">
       <h3><a><%- listItem.name %></a></h3>
     </div>
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
@@ -71,7 +71,7 @@
       </div>
       <div class="mdl-layout-spacer"></div>
       <div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent pull-right mdl-js-ripple-effect" onclick="goToDetails(1)">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent pull-right mdl-js-ripple-effect" onclick="goToDetails(<%- listItem.id %>)">
           Learn More
         </button>
       </div>
@@ -79,4 +79,6 @@
   </div>
   <% }); %>
 </script>
+<script src="/js/list.js"></script>
+
 </html>
