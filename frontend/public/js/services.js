@@ -1,4 +1,4 @@
-function queryConferences = function(queryString) {
+var queryConferences = function(queryString) {
   //mocked data
   return [
     {

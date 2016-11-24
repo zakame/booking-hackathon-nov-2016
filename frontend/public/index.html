@@ -26,70 +26,30 @@
             </div>
           </div>
         </div>
-        <!-- repeat this one -->
-        <div class="mdl-card mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url('images/road.jpg');" onclick="goToDetails(1)">
-            <h3><a href="entry.html">Pycon UK</a></h3>
-          </div>
-          <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
-            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
-          </div>
-          <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-            <div class="minilogo"></div>
-            <div>
-              <strong>November 26, 2016</strong>
-              <span>2 days from now</span>
+        <div id="conferenceList">
+          <!-- repeat this one -->
+          <div class="mdl-card mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url('images/road.jpg');" onclick="goToDetails(1)">
+              <h3><a>Pycon UK</a></h3>
             </div>
-            <div class="mdl-layout-spacer"></div>
-            <div>
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent pull-right mdl-js-ripple-effect" onclick="goToDetails(1)">
-                Learn More
-              </button>
+            <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
+              Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
             </div>
-          </div>
-        </div>
-        <!-- repeat this one -->
-        <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url('images/road.jpg');">
-            <h3><a href="entry.html">O’Reilly Software Architecture Conference</a></h3>
-          </div>
-          <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
-            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
-          </div>
-          <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-            <div class="minilogo"></div>
-            <div>
-              <strong>November 26, 2016</strong>
-              <span>2 days from now</span>
-            </div>
-            <div class="mdl-layout-spacer"></div>
-            <div>
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent pull-right mdl-js-ripple-effect">
-                Learn More
-              </button>
+            <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+              <div class="minilogo"></div>
+              <div>
+                <strong>November 26, 2016</strong>
+                <span>2 days from now</span>
+              </div>
+              <div class="mdl-layout-spacer"></div>
+              <div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent pull-right mdl-js-ripple-effect" onclick="goToDetails(1)">
+                  Learn More
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url('images/road.jpg');">
-            <h3><a href="entry.html">Google I/O</a></h3>
-          </div>
-          <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
-            Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
-          </div>
-          <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-            <div class="minilogo"></div>
-            <div>
-              <strong>November 26, 2016</strong>
-              <span>2 days from now</span>
-            </div>
-            <div class="mdl-layout-spacer"></div>
-            <div>
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent pull-right mdl-js-ripple-effect">
-                Learn More
-              </button>
-            </div>
-          </div>
+          <!--repeat this one-->
         </div>
       </div>
       <footer class="mdl-mini-footer">
@@ -115,4 +75,30 @@
     <div class="mdl-layout__obfuscator"></div>
   </div>
 </body>
+
+<script type="text/template" class="template">
+  <% _.each( rc.listItems, function( listItem ){ %>
+  <div class="mdl-card mdl-cell mdl-cell--12-col">
+    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url('images/road.jpg');" onclick="goToDetails(1)">
+      <h3><a><%- listItem.title %></a></h3>
+    </div>
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
+      <%- listItem.description %>
+    </div>
+    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+      <div class="minilogo"></div>
+      <div>
+        <strong><%- listItem.start_date + ' - ' + listItem.end_date %></strong>
+        <span>2 days from now</span>
+      </div>
+      <div class="mdl-layout-spacer"></div>
+      <div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent pull-right mdl-js-ripple-effect" onclick="goToDetails(1)">
+          Learn More
+        </button>
+      </div>
+    </div>
+  </div>
+  <% }); %>
+</script>
 </html>

@@ -505,3 +505,7 @@ body .demo-blog {
 .demo-blog .mdl-textfield__input.large-input {
   font-size: 24px !important;
 }
+
+#conferenceList {
+  width:100%;
+}
