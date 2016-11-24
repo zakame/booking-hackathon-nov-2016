@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+  backend:
+    build: ./backend
+    depends_on:
+      - database
+    entrypoint: ./wait-for-it.sh database:5432 -- /usr/local/bin/python manage.py runserver 0.0.0.0:8000
+    environment:
+      - DB_HOST=database
+      - DB_USER=conf
+      - DB_NAME=conf
+      - DB_PASSWORD=booking
+    image: conf-back
+    networks:
+      - conferences
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app
+  database:
+    environment:
+      - POSTGRES_USER=conf
+      - POSTGRES_PASSWORD=booking
+    image: postgres:9.6.1
+    networks:
+      - conferences
+    ports:
+      - "5432:5432"
+  frontend:
+    build: ./frontend
+    image: conf-front
+    networks:
+      - conferences
+    ports:
+      - "80:8080"
+      - "8080:8080"
+    volumes:
+      - ./frontend:/usr/src/app
+
+networks:
+  conferences:

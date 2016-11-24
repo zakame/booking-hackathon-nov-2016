@@ -71,7 +71,10 @@ http://developers.booking.com/api/technical.json
    :pretty:   json
    :END:
 
-*** POST /search
+*** GET =/conferences=
 
-    - expects parameters
-    - emits JSON array of matches
+    - emit a list of conferences
+
+*** GET =/conferences/:id=
+
+    - emit details of conference specified by its =id=
