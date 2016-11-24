@@ -1,0 +1,77 @@
+#+TITLE: Booking hackathon November 2016
+
+* Accommodation API
+
+** Basics
+
+- not compulsory
+- restful
+- basic http auth
+- https
+- cors enabled
+
+** New feature: swagger spec
+
+http://developers.booking.com/api/technical.json
+
+** Static API endpoints
+
+- autocomplete
+- getHotels
+- getBookingcomReview{,Score}s
+- goetHotel{Facilities,DescriptionPhotos,DescriptionTranslations}
+- getRooms
+
+** Realtime endpoints
+
+- getHotelAvailabilityV2
+- getBlockAvailability
+
+** Terms and Phrases
+
+- Availibility: ability to book
+- Block: the "booking", has a price
+- Policy: information on cancelation, deposits, particulars
+- Occupancy: number of people in a Block
+- Mealplan: included meals in Block
+- Facility: amenities provided
+- Room: static things in a room
+- Property: accommodation venue, hotel/apartment, holiday home, etc
+
+* New Ideas
+
+  - As a traveller, I want to share my itinerary to my followers so they
+    can experience my journey!
+
+  - As someone who would like to travel to a specific place but have no
+    idea what attractions are there, I want to have something suggest
+    places depending on my state (e.g. Facebook feed) so I can best
+    enjoy my travel!
+
+  - As someone who has photos of places I want to travel, I'd like to
+    have something suggest to me based on these places
+
+  - As someone who would ask about travel, I'd like to have a search box
+    to put my question in so I can get answers!
+
+  - As someone attending conferences, I'd like to have suggestions for
+    booking + attractions along with my conference registration
+
+* Chosen: conferences + booking
+
+** Stack
+
+   - frontend: AngularJS
+   - backend: Django
+
+** API
+   :PROPERTIES:
+   :host:     localhost
+   :port:     8000
+   :pretty:   json
+   :END:
+
+*** POST /search
+
+    - expects parameters
+    - emits JSON array of matches
