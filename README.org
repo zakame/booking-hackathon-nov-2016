@@ -79,8 +79,8 @@ http://developers.booking.com/api/technical.json
       GET /conferences/
       #+END_SRC
 
-      #+RESULTS:
       #+begin_example
+      #+RESULTS:
       [
         {
           "id": 1,
@@ -132,8 +132,8 @@ http://developers.booking.com/api/technical.json
       GET /conferences/1/
       #+END_SRC
 
-      #+RESULTS:
       #+begin_example
+      #+RESULTS:
       {
         "id": 1,
         "name": "Accessibility Camp Bay Area 2016",
