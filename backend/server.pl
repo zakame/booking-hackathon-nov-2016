@@ -71,9 +71,25 @@ helper getHotelAvailaibility => sub {
         $hotel_urls{ $hotel->{hotel_id} } = $hotel->{url};
     }
 
+    $url
+        = Mojo::URL->new(
+        "https://distribution-xml.booking.com/json/bookings.getBookingcomReviews"
+        );
+    $url->userinfo("$u:$p");
+    $url->query( hotel_ids => \@hotel_ids );
+    app->log->debug($url);
+
+    my $res3 = fetch( $c, $url );
+
+    my %hotel_reviews;
+    for my $hotel (@$res3) {
+        $hotel_reviews{ $hotel->{hotel_id} } = $hotel->{average_score};
+    }
+
     # interleave hotel url into hotels list
-    for my $h (@{ $res->{hotels} }) {
-        $h->{url} = $hotel_urls{$h->{hotel_id}};
+    for my $h ( @{ $res->{hotels} } ) {
+        $h->{url}        = $hotel_urls{ $h->{hotel_id} };
+        $h->{average_score} = $hotel_reviews{ $h->{hotel_id} };
     }
 
     $res;
