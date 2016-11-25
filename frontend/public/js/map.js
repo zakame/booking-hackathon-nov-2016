@@ -104,7 +104,9 @@ google.maps.TravelMode.TRANSIT requests directions via public transit routes.
 google.maps.TravelMode.WALKING requests walking directions via pedestrian paths & sidewalks.
 */
 function createMarkers(map, hotels, originLat, originLong) {
-  var min = hotels.length < 10 ? hotels.length : 10;
+  var min = hotels.length;
+  var markers = [];
+  var infoWindows = [];
   for(i=0;i<min;i++) {
     //check if within range of POIs
     var latlng = new google.maps.LatLng(originLat, originLong);
@@ -114,17 +116,25 @@ function createMarkers(map, hotels, originLat, originLong) {
     hid = hotels[i].hotel_id;
 
     //put a marker ??
-    marker = new google.maps.Marker({
+    markers.push(new google.maps.Marker({
       map: map,
       draggable: false,
       animation: google.maps.Animation.DROP,
       position: latlng1,
-      title: hotels[i].hotel_name + "\n Price: " + hotels[i].price + " Php",
+      title: hotels[i].hotel_name + "\n Price: " + hotels[i].price + " " + hotels[i].hotel_currency_code,
       icon: 'http://maps.google.com/mapfiles/kml/pal3/icon21.png'
       //map_icon_label: '<span class="map-icon map-icon-trail-walking"></span>'
-    });
+    }));
 
-    //}
+    var currentHotel = hotels[i];
+    var infoWindow = new google.maps.InfoWindow();
+    (function (marker, hotel) {
+      google.maps.event.addListener(markers[i], "click", function (e) {
+        //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+        infoWindow.setContent('<div id="info' + hotel.hotel_id  + '" style = "width:200px;min-height:40px;">' + hotel.hotel_name + '</div>');
+        infoWindow.open(map, marker);
+      });
+    })(markers[i], hotels[i]);
 
   }
 }

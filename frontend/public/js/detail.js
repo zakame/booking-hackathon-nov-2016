@@ -17,6 +17,10 @@ var goToSignUp = function(signUpUrl) {
   window.open(signUpUrl);
 }
 
+var showInfo = function(hotelId) {
+  $("#info"+hotelId).show();
+}
+
 function renderConferenceDetails(conference) {
   console.log("RENDERING...");
   //retrieve list and render
