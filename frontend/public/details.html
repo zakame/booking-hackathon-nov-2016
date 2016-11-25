@@ -23,7 +23,30 @@
         </a>
       </div>
       <div class="demo-blog__posts mdl-grid">
-        <div id="conferenceDetails">
+          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <div id="conferenceDetails">
+            </div>
+              <!--<div id="right-panel">
+                <ul id="list" style="width:100%;" ></ul>
+              </div>-->
+              <div id ="mapBox" class="mdl-color-text--grey-700">
+              <h5>Looking for a place to stay nearby?</h5>
+              <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+                <div class="mdl-layout__drawer">
+                  <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                  </nav>
+                </div>
+                <main class="mdl-layout__content">
+                  <div class="page-content">
+                    <div id="map"></div>
+                  </div>
+                </main>
+              </div>
+          </div>
         </div>
       </div>
       <!--<footer class="mdl-mini-footer">
@@ -51,8 +74,7 @@
 </body>
 
 <script type="text/template" class="detailTemplate">
-  <div class="demo-blog__posts mdl-grid">
-    <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
       <div class="mdl-card__media mdl-color-text--grey-50">
         <h3><%- rc.details.name %></h3>
         <h4><%- rc.details.city + ', ' + rc.details.country %></h4>
@@ -119,12 +141,9 @@
           </button>
         </div>
       </div>
-      <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
-
-      </div>
-    </div>
-  </div>
 </script>
 <script src="/js/detail.js"></script>
+<script src="/js/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ397vDwa1o-S8-uNHOmdSK0GOqU55yo0&libraries=places&callback=get_location" async defer></script>
 
 </html>
