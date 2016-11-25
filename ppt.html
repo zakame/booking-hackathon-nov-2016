@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>"Booking Hackathon: B.Confy"</title>
+<meta name="author" content="("@dawiong, @goyanx, @ray-dino, and @zakame")"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">"Booking Hackathon: B.Confy"</h1><h2 class="author">"@dawiong, @goyanx, @ray-dino, and @zakame"</h2><p class="date">Created: 2016-11-25 Fri 21:53</p>
+</section>
+
+<section>
+<section id="slide-orgb16158c">
+<h2 id="orgb16158c">The Idea</h2>
+<div class="outline-text-2" id="text-orgb16158c">
+</div></section>
+<section id="slide-org6e925cf">
+<h3 id="org6e925cf">As someone attending conferences, I'd like to have suggestions for booking + attractions along with my conference registration</h3>
+
+</section>
+</section>
+<section>
+<section id="slide-org66b6238">
+<h2 id="org66b6238">The Approach</h2>
+<ul>
+<li>Borrow data from codeandtalk.com and integrate Booking API!</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org8de27b6">
+<h2 id="org8de27b6">The Implementation</h2>
+<ul>
+<li>Backend(s): Python (Django) and Perl (Mojolicious)!</li>
+<li>Frontend: Vanilla JS with Material Design Lite and Google Maps!</li>
+<li>Infra: Docker with Compose for multi-container devops!</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgfbc9509">
+<h2 id="orgfbc9509">The Result</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-orge68ffab">
+<h2 id="orge68ffab"><span class="todo TODO">TODO</span> </h2>
+<ul>
+<li>Better way to source conference data</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org51371de">
+<h2 id="org51371de">B.Confy!</h2>
+<p>
+<a href="http://confy.localtunnel.me">http://confy.localtunnel.me</a>
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
