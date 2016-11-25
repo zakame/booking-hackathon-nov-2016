@@ -38,6 +38,7 @@ function filterList() {
 
 function initialize() {
   console.log("Initializing...");
+  locationFilter = $('#locationFilter').val().toLowerCase();
   $("#loadingBar1").show();
   queryConferences().then(function(data){
     masterConferenceList = data;

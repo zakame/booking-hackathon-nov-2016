@@ -71,20 +71,33 @@
       </div>
       <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
         <div class="fullwidth">
-          <b>Topics: </b>
-          <% _.each( rc.details.topics.split(','), function( topic ){ %>
-          <span class="mdl-chip">
-              <span class="mdl-chip__text"><%- topic %></span>
-          </span>
-          <% }); %>
-
+          <% if (rc.details.topics) { %>
+            <b>Topics: </b>
+            <% _.each( rc.details.topics.split(','), function( topic ){ %>
+            <span class="mdl-chip">
+                <span class="mdl-chip__text"><%- topic %></span>
+            </span>
+            <% }); %>
+            <br /><br />
+          <% } %>
+          <% if (rc.details.languages) { %>
+            <b>Languages: </b>
+              <% _.each( rc.details.languages.split(','), function( language ){ %>
+              <span class="mdl-chip">
+                  <span class="mdl-chip__text"><%- language %></span>
+              </span>
+              <% }); %>
+              <br /><br />
+          <% } %>
           <% if (rc.details.code_of_conduct) { %>
-            <br /><br /><b>Code of Conduct: </b>
+            <b>Code of Conduct: </b>
             <a href="<%- rc.details.code_of_conduct %>">[Link]</a>
+            <br /><br />
           <% } %>
           <% if (rc.details.youtube) { %>
-            <br /><br /><b>Videos: </b>
+            <b>Videos: </b>
             <a href="https://www.youtube.com/playlist?list=<%- rc.details.youtube %>">Youtube</a>
+            <br /><br />
           <% } %>
         </div>
         <p>
