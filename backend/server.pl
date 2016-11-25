@@ -46,11 +46,37 @@ helper getHotelAvailaibility => sub {
         latitude  => $latitude,
         longitude => $longitude,
         output    => 'room_policies,room_details,hotel_details',
+        order_by  => 'distance',
+        rows      => 25
     );
 
     app->log->debug($url);
 
-    fetch( $c, $url );
+    my $res = fetch( $c, $url );
+    my @hotel_ids;
+    for my $hotel ( @{ $res->{hotels} } ) {
+        push @hotel_ids => $hotel->{hotel_id};
+    }
+
+    $url = Mojo::URL->new(
+        "https://distribution-xml.booking.com/json/bookings.getHotels");
+    $url->userinfo("$u:$p");
+    $url->query( hotel_ids => \@hotel_ids );
+    app->log->debug($url);
+
+    my $res2 = fetch( $c, $url );
+
+    my %hotel_urls;
+    for my $hotel (@$res2) {
+        $hotel_urls{ $hotel->{hotel_id} } = $hotel->{url};
+    }
+
+    # interleave hotel url into hotels list
+    for my $h (@{ $res->{hotels} }) {
+        $h->{url} = $hotel_urls{$h->{hotel_id}};
+    }
+
+    $res;
 };
 
 under sub {
