@@ -31,13 +31,11 @@
               </div>-->
               <div id ="mapBox" class="mdl-color-text--grey-700">
               <h5><i class="material-icons">hotel</i>&nbsp;Looking for a place to stay nearby?</h5>
+              <div id="loadingBar2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate fullwidth" style="display:none"></div>
               <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
                 <div class="mdl-layout__drawer">
-                  <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="">Hotel Amsterdam - De Roode Leeuw</a>
-                    <a class="mdl-navigation__link" href="">Swissôtel Amsterdam</a>
-                    <a class="mdl-navigation__link" href="">Rho Hotel</a>
-                    <a class="mdl-navigation__link" href="">NH Collection Amsterdam Grand Hotel Krasnapolsky</a>
+                  <nav class="mdl-navigation" id="hotelNav">
+                    <!-- programmatically filled -->
                   </nav>
                 </div>
                 <main class="mdl-layout__content">
@@ -139,6 +137,11 @@
           </button>
         </div>
       </div>
+</script>
+<script type="text/template" class="hotelsTemplate">
+  <% _.each( rc2.listItems, function( listItem ){ %>
+    <a class="mdl-navigation__link" href=""><%- listItem.hotel_name %></a>
+  <% }); %>
 </script>
 <script src="/js/detail.js"></script>
 <script src="/js/map.js"></script>
