@@ -58,6 +58,8 @@ under sub {
 
     $c->res->headers->cache_control('no-cache');
     $c->res->headers->access_control_allow_origin('*');
+
+    return 1;
 };
 
 get '/conferences/:id/hotels' => sub {
