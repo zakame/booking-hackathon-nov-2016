@@ -18,13 +18,17 @@
   <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
     <main class="mdl-layout__content">
       <div class="demo-blog__posts mdl-grid">
+        <div id="logoBlock">
+          <img src="images/confy_logo.png"></img>
+        </div>
         <div class="mdl-card mdl-cell mdl-cell--12-col" style="min-height:0 !important;">
           <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="display:block; width:95%;">
-              <input type="text" class="mdl-textfield__input large-input" id="searchConference"></input>
+              <input type="text" class="mdl-textfield__input large-input" id="locationFilter"></input>
               <label class="mdl-textfield__label" for="searchConference">Conferences at..</label>
             </div>
           </div>
+          <div id="loadingBar1" class="mdl-progress mdl-js-progress mdl-progress__indeterminate fullwidth" style="display:none"></div>
         </div>
         <div id="conferenceList">
           <!-- repeat print in script -->
@@ -58,7 +62,8 @@
   <% _.each( rc.listItems, function( listItem ){ %>
   <div class="mdl-card mdl-cell mdl-cell--12-col">
     <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url('images/road.jpg');" onclick="goToDetails(<%- listItem.id %>)">
-      <h3><a><%- listItem.name %></a></h3>
+      <h3><%- listItem.name %></h3>
+      <h4><%- listItem.city + ', ' + listItem.country %></h4>
     </div>
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
       Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.

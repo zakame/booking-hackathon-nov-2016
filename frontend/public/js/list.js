@@ -1,12 +1,49 @@
+//global vars
+var locationFilter = '';
+var masterConferenceList = [];
+
 $(document).ready(function() {
-  queryConferences().then(function(data){
-    renderConferenceList(data);
+  initialize();
+
+  //listen on enter event on locationFilter
+  $('#locationFilter').keyup(function(e){
+      if(e.keyCode == 13) {
+          locationFilter = $('#locationFilter').val().toLowerCase();
+          filterList();
+      }
   });
-  //renderConferenceList(queryConferences());
 });
 
 var goToDetails = function(confId) {
   window.location.href = "/details.html?confId=" + confId;
+}
+
+var processFilters = function(dataList){
+  if(locationFilter && locationFilter.length > 0){
+    return _.filter(dataList, function(data) {
+      return data.city.toLowerCase().includes(locationFilter)
+      || data.state.toLowerCase().includes(locationFilter)
+      || data.country.toLowerCase().includes(locationFilter);
+    });
+  } else {
+    return dataList;
+  }
+}
+
+function filterList() {
+  $("#loadingBar1").show();
+  renderConferenceList(processFilters(masterConferenceList));
+  $("#loadingBar1").hide();
+}
+
+function initialize() {
+  console.log("Initializing...");
+  $("#loadingBar1").show();
+  queryConferences().then(function(data){
+    masterConferenceList = data;
+    renderConferenceList(processFilters(data));
+    $("#loadingBar1").hide();
+  });
 }
 
 function renderConferenceList(conferences) {

@@ -3,5 +3,5 @@ var queryConferences = function(queryString) {
 }
 
 var getConferenceDetails = function(confId) {
-  return $.getJSON("http://confy.localtunnel.me/conferences/" + confId + "?callback=");
+  return $.getJSON("http://confy.localtunnel.me/conferences/" + confId + "/?callback=");
 }
