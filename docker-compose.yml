@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  backend:
+  backendpy:
     build: ./backend
     depends_on:
       - database
@@ -12,11 +12,29 @@ services:
       - DB_NAME=conf
       - DB_PASSWORD=booking
       - DEBUG=True
-    image: conf-back
+    image: conf-backpy
     networks:
       - conferences
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app
+  backendpl:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.perl
+    depends_on:
+      - database
+    environment:
+      - DB_HOST=database
+      - DB_USER=conf
+      - DB_NAME=conf
+      - DB_PASSWORD=booking
+    image: conf-backpl
+    networks:
+      - conferences
+    ports:
+      - "3000:3000"
     volumes:
       - ./backend:/usr/src/app
   database:
@@ -41,7 +59,8 @@ services:
     image: nginx
     depends_on:
       - frontend
-      - backend
+      - backendpy
+      - backendpl
     volumes:
       - ./confy.conf:/etc/nginx/conf.d/default.conf
     ports:
