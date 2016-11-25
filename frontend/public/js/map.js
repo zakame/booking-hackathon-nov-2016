@@ -69,19 +69,11 @@ function get_location(somedate) {
 }
 
 
-function initMap(position) {
+function initMap(latitude, longitude) {
+  latitude = parseFloat(latitude);
+  longitude = parseFloat(longitude);
 
-  //  makati = 11.9636379,121.9244862
-  //latitude = 11.9636379;
-  //longitude = 121.9244862;
-  // intramuras
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
-  //cebu
-  // 9.5610103,123.4129313
-  //latitude = 9.5610103;
-  //longitude = 123.4129313;
-  console.log("lat = " + latitude + " long = " + longitude);
+  console.log("new lat = " + latitude + " long = " + longitude);
 
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
@@ -92,24 +84,11 @@ function initMap(position) {
     zoom: 17
   });
 
-
   var marker = new google.maps.Marker({
     position: mylonglat,
     map: map,
     title: 'I am here'
   });
-
-  var latlng1 = new google.maps.LatLng(52.3657092,4.8966912);
-
-  var latlng2 = new google.maps.LatLng(52.365764,4.8970353);
-
-  var placesX = [
-    {"name":"Hotel Happy","position":latlng1},
-    {"name":"Hotel Sadness", "position":latlng2}
-  ];
-  //create markers for the hotels
-  createMarkers(placesX, mylonglat);
-
 }
 
 /**

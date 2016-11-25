@@ -3,6 +3,7 @@ $(document).ready(function() {
   getConferenceDetails(confId).then(function(data){
     renderConferenceDetails(data);
     $("#loadingBar2").show();
+    initMap(data.lat, data.lng);
     getHotels(confId).then(function(results){
       renderHotels(results.hotels);
       $("#loadingBar2").hide();
