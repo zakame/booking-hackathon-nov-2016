@@ -20,9 +20,18 @@
 
 * The Result
 
+** B.Confy
+
+[[./shot.png]]
+
+** Conference Detail
+
+[[./shot2.png]]
+
 * TODO
 
 - Better way to source conference data
+- Improve UI for easier hotel search
 
 * B.Confy!
 
