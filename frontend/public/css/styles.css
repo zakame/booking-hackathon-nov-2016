@@ -84,12 +84,14 @@ body .demo-blog {
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-align-items: flex-end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-justify-content: flex-end;
+      justify-content: flex-end;
   cursor: pointer;
 }
 .demo-blog .mdl-card__media a,
@@ -278,6 +280,9 @@ body .demo-blog {
 }
 .demo-blog .mdl-card h3.quote:after {
   content: '”';
+}
+.demo-blog .mdl-card h4 {
+  margin: 0;
 }
 .demo-blog--blogpost .custom-header {
   background-color: transparent;
