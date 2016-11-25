@@ -140,7 +140,10 @@
 </script>
 <script type="text/template" class="hotelsTemplate">
   <% _.each( rc2.listItems, function( listItem ){ %>
-    <a class="mdl-navigation__link" href=""><%- listItem.hotel_name %></a>
+    <a class="mdl-navigation__link" href="">
+      <strong><%- listItem.hotel_name %></strong>
+      <br /><%- listItem.price + ' ' + listItem.hotel_currency_code %>
+    </a>
   <% }); %>
 </script>
 <script src="/js/detail.js"></script>
