@@ -2,6 +2,16 @@
 use Mojolicious::Lite;
 use Mojo::Pg;
 use Mojo::URL;
+use Memoize;
+
+sub fetch {
+    my ($c, $url) = @_;
+    $c->ua->get($url)->res->json;
+}
+
+sub normalize_url { shift; shift->to_string }
+
+memoize('fetch', NORMALIZER => 'normalize_url');
 
 plugin 'PODRenderer';    # /perldoc
 
@@ -37,7 +47,7 @@ helper getHotelAvailaibility => sub {
 
     app->log->debug($url);
 
-    $ua->get($url)->res->json;
+    fetch($c, $url);
 };
 
 under sub {
