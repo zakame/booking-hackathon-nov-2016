@@ -140,7 +140,7 @@
 </script>
 <script type="text/template" class="hotelsTemplate">
   <% _.each( rc2.listItems, function( listItem ){ %>
-    <a class="mdl-navigation__link" href="<%- listItem.url %>" onmouseover="showInfo(<%- listItem.hotel_id %>)" target="_blank">
+    <a class="mdl-navigation__link" href="<%- listItem.url %>" id="info<%- listItem.hotel_id %>" target="_blank">
       <strong><%- listItem.hotel_name %></strong>
       <br /><%- listItem.price + ' ' + listItem.hotel_currency_code %>
       <br /><i>Score: <%- listItem.average_score || 0 %> / 10</i>
