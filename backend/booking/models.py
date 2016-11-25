@@ -22,6 +22,8 @@ class Conference(models.Model):
 
     lat = models.FloatField(null=True)
     lng = models.FloatField(null=True)
+
+    summary = models.TextField(null=True)
     
     def __unicode__(self):
         return '{}: {}'.format(self.id, self.name)

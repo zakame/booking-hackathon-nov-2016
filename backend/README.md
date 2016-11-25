@@ -32,7 +32,12 @@ python manage.py createsuperuser
 python manage.py load_data
 ```
 
-- To add geocoordinate data
+- To add geocoordinate data for each conference
 ```
 python manage.py geocode
+```
+
+- To get summaries for each conference
+```
+python manage.py summarize
 ```
