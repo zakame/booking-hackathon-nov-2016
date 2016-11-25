@@ -1,17 +1,18 @@
 #!/usr/bin/env perl
 use Mojolicious::Lite;
+use Mojo::Date;
 use Mojo::Pg;
 use Mojo::URL;
 use Memoize;
 
 sub fetch {
-    my ($c, $url) = @_;
+    my ( $c, $url ) = @_;
     $c->ua->get($url)->res->json;
 }
 
 sub normalize_url { shift; shift->to_string }
 
-memoize('fetch', NORMALIZER => 'normalize_url');
+memoize( 'fetch', NORMALIZER => 'normalize_url' );
 
 plugin 'PODRenderer';    # /perldoc
 
@@ -21,6 +22,8 @@ my $db_pass = $ENV{DB_PASSWORD} || 'booking';
 my $db_host = $ENV{DB_HOST} || 'database';
 
 my $config = plugin 'Config';
+
+helper date => sub { Mojo::Date->new };
 
 helper pg => sub {
     my $conn = "postgresql://$db_user:$db_pass\@$db_host/$db_name";
@@ -47,7 +50,7 @@ helper getHotelAvailaibility => sub {
 
     app->log->debug($url);
 
-    fetch($c, $url);
+    fetch( $c, $url );
 };
 
 under sub {
@@ -62,14 +65,30 @@ get '/conferences/:id/hotels' => sub {
     my $id = $c->stash('id');
     my $db = $c->pg->db;
 
-    # find lat, lng from db
-    my $coord
-        = $db->query( 'select lat, lng from booking_conference where id = ?',
-        $id )->hash;
+    # find dates, lat, lng from db
+    my $res = $db->query(
+        'select start_date, end_date, lat, lng from booking_conference where id = ?',
+        $id
+    )->hash;
+
+    # check start and end dates, then estimate possible checkin/checkout dates
+    (   my $start_date = $c->date->parse(
+            $c->date->parse( $res->{start_date} . "T00:00:00Z" )->epoch
+                - 86400
+        )->to_datetime
+    ) =~ s/T.*Z//;
+
+    # make the checkout date be a day after the conf
+    (   my $end_date = $c->date->parse(
+            $c->date->parse( $res->{end_date} . "T00:00:00Z" )->epoch + 172800
+        )->to_datetime
+    ) =~ s/T.*Z//;
+
+    app->log->debug("$start_date $end_date");
 
     $c->render(
         json => $c->getHotelAvailaibility(
-            '2016-12-01', '2016-12-10', $coord->{lat}, $coord->{lng}, 15
+            ${start_date}, ${end_date}, $res->{lat}, $res->{lng}, 15
         )
     );
 };
