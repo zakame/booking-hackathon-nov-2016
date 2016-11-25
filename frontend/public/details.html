@@ -143,6 +143,7 @@
     <a class="mdl-navigation__link" href="<%- listItem.url %>" onmouseover="showInfo(<%- listItem.hotel_id %>)" target="_blank">
       <strong><%- listItem.hotel_name %></strong>
       <br /><%- listItem.price + ' ' + listItem.hotel_currency_code %>
+      <br /><i>Score: <%- listItem.average_score || 0 %> / 10</i>
     </a>
   <% }); %>
 </script>

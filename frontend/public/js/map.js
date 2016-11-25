@@ -129,13 +129,12 @@ function createMarkers(map, hotels, originLat, originLong) {
     var currentHotel = hotels[i];
     var infoWindow = new google.maps.InfoWindow();
     (function (marker, hotel) {
-      google.maps.event.addListener(markers[i], "click", function (e) {
+      google.maps.event.addListener(markers[i], "mouseover", function (e) {
         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
         infoWindow.setContent('<div id="info' + hotel.hotel_id  + '" style = "width:200px;min-height:40px;">' + hotel.hotel_name + '</div>');
         infoWindow.open(map, marker);
       });
     })(markers[i], hotels[i]);
-
   }
 }
 
