@@ -13,7 +13,7 @@ function get_location(somedate) {
 
     //TODO do we need to call the getHotelAvailabiltyV2 from here ?
     $.ajax({
-      url: "http://confy.localtunnel.me/gethotel",
+      url: "/gethotel",
       type: "GET",
       dataType: "json",
       data: {lat: latitude, lng: longitude},

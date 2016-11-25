@@ -1,11 +1,11 @@
 var queryConferences = function(queryString) {
-  return $.getJSON("http://confy.localtunnel.me/conferences/?callback=");
+  return $.getJSON("/conferences/?callback=");
 }
 
 var getConferenceDetails = function(confId) {
-  return $.getJSON("http://confy.localtunnel.me/conferences/" + confId + "/?callback=");
+  return $.getJSON("/conferences/" + confId + "/?callback=");
 }
 
 var getHotels = function(confId) {
-  return $.getJSON("http://confy.localtunnel.me/conferences/" + confId + "/hotels/?callback=")
+  return $.getJSON("/conferences/" + confId + "/hotels/?callback=")
 }
