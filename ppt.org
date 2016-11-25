@@ -1,0 +1,29 @@
+#+TITLE: "Booking Hackathon: B.Confy"
+#+AUTHOR: "@dawiong, @goyanx, @ray-dino, and @zakame"
+#+OPTIONS: toc:nil num:nil
+#+STARTUP: indent inlineimages
+
+* The Idea
+
+** As someone attending conferences, I'd like to have suggestions for booking + attractions along with my conference registration 
+
+* The Approach
+
+- Borrow data from codeandtalk.com and integrate Booking API!
+
+* The Implementation
+
+
+- Backend(s): Python (Django) and Perl (Mojolicious)!
+- Frontend: Vanilla JS with Material Design Lite and Google Maps!
+- Infra: Docker with Compose for multi-container devops!
+
+* The Result
+
+* TODO
+
+- Better way to source conference data
+
+* B.Confy!
+
+http://confy.localtunnel.me
