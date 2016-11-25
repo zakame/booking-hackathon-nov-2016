@@ -1,11 +1,13 @@
 $(document).ready(function() {
   var confId = getUrlParameter('confId');
   getConferenceDetails(confId).then(function(data){
-    renderConferenceDetails(data);
+    var conference = data;
+    renderConferenceDetails(conference);
     $("#loadingBar2").show();
-    initMap(data.lat, data.lng);
+    var myMap = initMap(conference.lat, conference.lng);
     getHotels(confId).then(function(results){
       renderHotels(results.hotels);
+      createMarkers(myMap, results.hotels, conference.lat, conference.lng);
       $("#loadingBar2").hide();
     });
   });

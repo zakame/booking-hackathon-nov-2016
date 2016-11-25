@@ -79,7 +79,7 @@ function initMap(latitude, longitude) {
   directionsDisplay = new google.maps.DirectionsRenderer();
 
   var mylonglat = {lat: latitude, lng: longitude};
-  map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('map'), {
     center: mylonglat,
     zoom: 17
   });
@@ -89,6 +89,8 @@ function initMap(latitude, longitude) {
     map: map,
     title: 'I am here'
   });
+
+  return map;
 }
 
 /**
@@ -101,89 +103,31 @@ google.maps.TravelMode.BICYCLING requests bicycling directions via bicycle paths
 google.maps.TravelMode.TRANSIT requests directions via public transit routes.
 google.maps.TravelMode.WALKING requests walking directions via pedestrian paths & sidewalks.
 */
-function createMarkers(places, centerLatLng, mode) {
-  var bounds = new google.maps.LatLngBounds();
-  var placesList = document.getElementById('map');
-  //var placesList = $('#map');
-  var request = {
-    travelMode: google.maps.TravelMode.TRANSIT
-  };
-  for (var i = 0; i < places.length; i++) {
-    console.log("places@@ :" + places[i].name);
-    // var doc = $('#hotel-item--name_' + i)
-    //console.log(doc);
-    //Manipulate the hotel list !!
-    // $('.hotel-item--name #hotel-item--name_' + i).html(places[i].name);
+function createMarkers(map, hotels, originLat, originLong) {
+  var min = hotels.length < 10 ? hotels.length : 10;
+  for(i=0;i<min;i++) {
+    //check if within range of POIs
+    var latlng = new google.maps.LatLng(originLat, originLong);
+    var latlng1 = new google.maps.LatLng(hotels[i].location.latitude, hotels[i].location.longitude);
+    var dist = google.maps.geometry.spherical.computeDistanceBetween(latlng,latlng1);
 
-    var image = {
-      url: 'http://maps.google.com/mapfiles/ms/icons/lodging.png',
-      size: new google.maps.Size(71, 71),
-      origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(25, 25)
-    };
+    hid = hotels[i].hotel_id;
 
-    var marker = new google.maps.Marker({
+    //put a marker ??
+    marker = new google.maps.Marker({
       map: map,
-      icon: image,
+      draggable: false,
       animation: google.maps.Animation.DROP,
-      title: 'hotel #' + i,
-      position: places[i].position
-    });
-    var hotelDescription = "<b><a href='someurl'>"+places[i].name+"</a></b><br>some address";
-    //Attach click event to the marker.
-    google.maps.event.addListener(marker, "click", function (e) {
-      var infoWindow = new google.maps.InfoWindow();
-
-      //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-      infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + hotelDescription + "</div>");
-      infoWindow.open(map, marker);
+      position: latlng1,
+      title: hotels[i].hotel_name + "\n Price: " + hotels[i].price + " Php",
+      icon: 'http://maps.google.com/mapfiles/kml/pal3/icon21.png'
+      //map_icon_label: '<span class="map-icon map-icon-trail-walking"></span>'
     });
 
-    var requestDS = {
-      origin: centerLatLng, // LatLng|string
-      destination: places[i].position, // LatLng|string
-      travelMode: google.maps.DirectionsTravelMode.TRANSIT
-    };
+    //}
 
-    directionsService.route( requestDS, function( response, status ) {
-
-      if ( status === 'OK' ) {
-        var point = response.routes[ 0 ].legs[ 0 ];
-        // $( '#travel_data' ).html( 'Estimated travel time: ' + point.duration.text + ' (' + point.distance.text + ')' );
-        console.log('Estimated travel time: ' + point.duration.text + " distance: " + point.distance.text);
-      }
-    } );
-
-    var hotelDiv =  '<div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">' +
-
-    '    <a href="#" class="hotel-item" >' +
-    '      <div class="hotel-item--image">' +
-    '        <img src="http://q-ec.bstatic.com/images/hotel/square200/253/25352657.jpg" />'
-    '      </div>' +
-    '      <div class="hotel-item--info">'+
-    '        <span id="hotel-item--name_0" class="hotel-item--name" >A Good Hotel</span>'+
-    '        <div class="hotel-item--rating-bar">' +
-    '          <div class="hotel-item--rating-bar-filled" style="width: 40%;"></div>' +
-    '        </div>' +
-    '        <span class="hotel-item--lastbooked" >Booked 2 times in the last 48 hours</span>' +
-    '      </div>' +
-    '     <div class="hotel-item--book">' +
-    '        <span class="hotel-item--price" ><span class="price--currency">PHP</span> 2,000</span>' +
-    '        <button class="button hotel-item--book-now">Book your room</button>' +
-    '      </div>' +
-    '    </a>' +
-    '</div>'
-
-    $("<li />")
-    .html(hotelDiv)
-    /*.click(function(){
-    map.panTo(marker.getLatLng());
-  }) */
-  .appendTo("#list");
-} //end of for loop
+  }
 }
-
 
 
 function isEmpty(val){
