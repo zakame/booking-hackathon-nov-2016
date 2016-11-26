@@ -1,18 +1,28 @@
 #!/usr/bin/env perl
+use DB_File;
+use Fcntl;
 use Mojolicious::Lite;
 use Mojo::Date;
+use Mojo::JSON 'decode_json';
 use Mojo::Pg;
 use Mojo::URL;
 use Memoize;
 
+tie my %cache => 'DB_File', 'cache', O_RDWR | O_CREAT, 0666;
+
 sub fetch {
     my ( $c, $url ) = @_;
-    $c->ua->get($url)->res->json;
+    $c->ua->get($url)->res->body;
 }
 
 sub normalize_url { shift; shift->to_string }
 
-memoize( 'fetch', NORMALIZER => 'normalize_url' );
+memoize(
+    'fetch',
+    NORMALIZER   => 'normalize_url',
+    SCALAR_CACHE => [ HASH => \%cache ],
+    LIST_CACHE   => 'FAULT'
+);
 
 plugin 'PODRenderer';    # /perldoc
 
@@ -52,7 +62,7 @@ helper getHotelAvailaibility => sub {
 
     app->log->debug($url);
 
-    my $res = fetch( $c, $url );
+    my $res = decode_json( scalar fetch( $c, $url ) );
     my @hotel_ids;
     for my $hotel ( @{ $res->{hotels} } ) {
         push @hotel_ids => $hotel->{hotel_id};
@@ -64,7 +74,7 @@ helper getHotelAvailaibility => sub {
     $url->query( hotel_ids => \@hotel_ids );
     app->log->debug($url);
 
-    my $res2 = fetch( $c, $url );
+    my $res2 = decode_json( scalar fetch( $c, $url ) );
 
     my %hotel_urls;
     for my $hotel (@$res2) {
@@ -79,7 +89,7 @@ helper getHotelAvailaibility => sub {
     $url->query( hotel_ids => \@hotel_ids );
     app->log->debug($url);
 
-    my $res3 = fetch( $c, $url );
+    my $res3 = decode_json( scalar fetch( $c, $url ) );
 
     my %hotel_reviews;
     for my $hotel (@$res3) {
@@ -88,7 +98,7 @@ helper getHotelAvailaibility => sub {
 
     # interleave hotel url into hotels list
     for my $h ( @{ $res->{hotels} } ) {
-        $h->{url}        = $hotel_urls{ $h->{hotel_id} };
+        $h->{url}           = $hotel_urls{ $h->{hotel_id} };
         $h->{average_score} = $hotel_reviews{ $h->{hotel_id} };
     }
 
