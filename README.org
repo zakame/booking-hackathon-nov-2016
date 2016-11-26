@@ -1,5 +1,26 @@
 #+TITLE: Booking hackathon November 2016
 
+* Quick Start
+
+  #+BEGIN_SRC sh
+  docker-compose build
+  docker-compose run --rm backendpl carton install
+  docker-compose run --rm frontend npm install
+  docker-compose up
+  #+END_SRC
+
+  Then, once all the services are up, load conference data (+ geocode
+  and summaries) to the Python backend:
+
+  #+BEGIN_SRC sh
+  docker-compose exec backendpy python manage.py migrate
+  docker-compose exec backendpy python manage.py load_data
+  docker-compose exec backendpy python manage.py geocode
+  docker-compose exec backendpy python manage.py summarize
+  #+END_SRC
+
+  Then hit http://localhost.
+
 * Accommodation API
 
 ** Basics
